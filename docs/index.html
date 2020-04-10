@@ -23,6 +23,10 @@
       height: 120px;
       border-radius: 50%;
     }
+
+    #gitalk-container {
+      max-width: calc(100% - 300px);
+    }
   </style>
 </head>
 
@@ -63,6 +67,7 @@
   <script src="static/js/prism-markdown.min.js"></script>
   <script src="static/js/prism-nginx.min.js"></script>
   <script src="static/js/gitalk.min.js"></script>
+  <script src="static/js/gitalk.plugin.min.js"></script>
   <script>
       ((window.gitter = {}).chat = {}).options = {
       room: 'docsifyjs/Lobby'
@@ -73,10 +78,15 @@
       repo: 'Note',     // 存放评论的仓库
       owner: 'cpg0525',          // 仓库的创建者，
       admin: ['cpg0525'],        // 如果仓库有多个人可以操作，那么在这里以数组形式写出
-      id: location.pathname,      // 用于标记评论是哪个页面的，确保唯一，并且长度小于50
-      title: document.title      //title用于在github仓库issues的标题，如果你想管理评论可以设置一下这个参数，来区分该评论是来自于那个文章
+      id: location.hash.match(/#(.*?)([?]|$)/)[1],      // 用于标记评论是哪个页面的，确保唯一，并且长度小于50
+      title: location.hash.match(/#(.*?)([?]|$)/)[1]      //title用于在github仓库issues的标题，如果你想管理评论可以设置一下这个参数，来区分该评论是来自于那个文章
     })
-    gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
+    // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
+    window.onhashchange = function (event) {
+      if (event.newURL.split('?')[0] !== event.oldURL.split('?')[0]) {
+        location.reload()
+      }
+    }
   </script>
 </body>
 
