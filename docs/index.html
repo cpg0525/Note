@@ -11,10 +11,13 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="static/css/vue.css" title="vue">
+  <link rel="stylesheet" href="static/css/gitalk.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"> -->
   <style>
     nav.app-nav li ul {
       min-width: 100px;
     }
+
     [alt='logo'] {
       width: 120px;
       height: 120px;
@@ -25,6 +28,7 @@
 
 <body>
   <div id="app">Loading ...</div>
+  <div id="gitalk-container"></div>
   <script>
     window.$docsify = {
       alias: {
@@ -58,10 +62,21 @@
   <script src="static/js/prism-bash.min.js"></script>
   <script src="static/js/prism-markdown.min.js"></script>
   <script src="static/js/prism-nginx.min.js"></script>
+  <script src="static/js/gitalk.min.js"></script>
   <script>
       ((window.gitter = {}).chat = {}).options = {
       room: 'docsifyjs/Lobby'
     };
+    var gitalk = new Gitalk({
+      clientID: '2bd3c0535016116d1799', // GitHub Application Client ID
+      clientSecret: '79c27a5fff4e6e686c321a2addf12a0927cd7d09', // GitHub Application Client Secret
+      repo: 'Note',     // 存放评论的仓库
+      owner: 'cpg0525',          // 仓库的创建者，
+      admin: ['cpg0525'],        // 如果仓库有多个人可以操作，那么在这里以数组形式写出
+      id: location.pathname,      // 用于标记评论是哪个页面的，确保唯一，并且长度小于50
+      title: document.title      //title用于在github仓库issues的标题，如果你想管理评论可以设置一下这个参数，来区分该评论是来自于那个文章
+    })
+    gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
   </script>
 </body>
 
