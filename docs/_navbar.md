@@ -1,2 +1,6 @@
-- Translations
-  - [:cn: 中文](/)
+- [HOME](/)
+- [JS](/basis/)
+- [TEST2](/test2)
+- [TEST3](/test3)
+- [TEST4](/test4)
+- [TEST5](/test5)

@@ -12,6 +12,7 @@
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="static/css/vue.css" title="vue">
   <link rel="stylesheet" href="static/css/gitalk.min.css">
+  <link rel="stylesheet" href="static/css/pg-docs.css">
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"> -->
   <style>
     nav.app-nav li ul {
@@ -39,9 +40,10 @@
       loadSidebar: true,
       loadNavbar: true,
       mergeNavbar: true,
+      autoHeader: true,
       maxLevel: 4,
       subMaxLevel: 2,
-      name: 'Note',
+      name: '切图仔日记',
       search: {
         noData: {
           '/': 'No results!'
@@ -51,7 +53,7 @@
           '/': 'Search'
         }
       },
-      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      formatUpdated: '{YYYY}/{MM}/{DD} {HH}:{mm}',
       coverpage: true,
       onlyCover: true,
       plugins: []
@@ -69,13 +71,13 @@
       room: 'docsifyjs/Lobby'
     };
     var gitalk = new Gitalk({
-      clientID: '2bd3c0535016116d1799', // GitHub Application Client ID
-      clientSecret: '79c27a5fff4e6e686c321a2addf12a0927cd7d09', // GitHub Application Client Secret
-      repo: 'Note',     // 存放评论的仓库
-      owner: 'cpg0525',          // 仓库的创建者，
-      admin: ['cpg0525'],        // 如果仓库有多个人可以操作，那么在这里以数组形式写出
-      id: location.hash.match(/#(.*?)([?]|$)/)[1],      // 用于标记评论是哪个页面的，确保唯一，并且长度小于50
-      title: location.hash.match(/#(.*?)([?]|$)/)[1]      //title用于在github仓库issues的标题，如果你想管理评论可以设置一下这个参数，来区分该评论是来自于那个文章
+      clientID: '2bd3c0535016116d1799',
+      clientSecret: '79c27a5fff4e6e686c321a2addf12a0927cd7d09',
+      repo: 'Note',
+      owner: 'cpg0525',
+      admin: ['cpg0525'],
+      id: location.hash.match(/#(.*?)([?]|$)/)[1],
+      title: location.hash.match(/#(.*?)([?]|$)/)[1]
     })
     // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
     window.onhashchange = function (event) {
